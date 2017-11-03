@@ -1,4 +1,4 @@
-.checkout
+The Juergas App
 =========
 
-A Symfony project created on November 3, 2017, 8:48 am.
+**Aplicación web** para mejorar la gestión de fiestas entre varios usuarios
