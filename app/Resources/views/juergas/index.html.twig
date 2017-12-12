@@ -1,5 +1,30 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th>Evento</th>
+            <th>Asistentes</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Precio</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for juerga in juergas %}
+            <tr>
+                <td>{{ juerga.evento}}</td>
+                <td>{{ juerga.asistentes }}</td>
+                <td>{{ juerga.fechaInicio }}</td>
+                <td>{{ juerga.fechaFin }}</td>
+                <td>{{ juerga.precioPersona }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No hay eventos que mostrar</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
