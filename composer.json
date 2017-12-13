@@ -35,10 +35,13 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
+        "doctrine/data-fixtures": "^2.4",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
-        "nelmio/alice": "^3.1",
+        "hautelook/alice-bundle": "^2.0@rc",
+        "nelmio/alice": "^2.1",
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^3.0",
+        "theofidry/alice-data-fixtures": "^1.0@rc"
     },
     "scripts": {
         "symfony-scripts": [

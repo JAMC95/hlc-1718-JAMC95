@@ -1,0 +1,10 @@
+AppBundle\Entity\Evento:
+    juerga_{1..20}:
+      nombre: <es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>
+      asistentes: <buildingNumber()>
+      fechaInicio : <dateTimeThisYear()>
+      fechaFin : <dateTimeThisYear()>
+      precioPersona: <buildingNumber()>
+
+
+
