@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class JuergasController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route(path="/eventos", name="mostar_juergas")
      */
     public function indexAction(Request $request)
     {
@@ -23,12 +23,14 @@ class JuergasController extends Controller
 
 
     /**
-     * @Route("/evento/{evento}", name="eventdetail")
-     */
+     * @Route(path="/evento/{evento}", name="mostrar_asistentes")
+     * */
+
     public function JuergaAction(Request $request, $evento)
     {
         $eventosAsistente[0] = ['evento' => 'Fiesta aprobados HLC', 'asistente'=> ['Juan','Maria', 'Diego'] ];
         $eventosAsistente[1] = ['evento' => 'Fiesta estudiosos', 'asistente'=> ['Paco','Maria', 'Diego'] ];
+        $eventosAsistente[1] = ['evento' => 'Viaje a Despeñaperros', 'asistente'=> [] ];
         $eventoAsistente = null;
         foreach ($eventosAsistente as $item) {
             if($item['evento'] == $evento) {
