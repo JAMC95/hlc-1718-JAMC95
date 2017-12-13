@@ -33,6 +33,31 @@ class Usuario
     private $admin;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Evento", mappedBy="nombre")
+     *
+     * @var Evento[]
+     */
+    private $eventos;
+
+    /**
+     * @return Evento[]
+     */
+    public function getEventos()
+    {
+        return $this->eventos;
+    }
+
+    /**
+     * @param Evento[] $eventos
+     * @return Usuario
+     */
+    public function setEventos($eventos)
+    {
+        $this->eventos = $eventos;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getId()

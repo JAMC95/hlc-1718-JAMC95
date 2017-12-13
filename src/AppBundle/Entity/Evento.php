@@ -39,6 +39,13 @@ class Evento
     private $precioPersona;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Usuario", inversedBy="nombreUsuario")
+     *
+     * @var Usuario[]
+     */
+    private $usuario;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -125,6 +132,24 @@ class Evento
     public function setPrecioPersona($precioPersona)
     {
         $this->precioPersona = $precioPersona;
+        return $this;
+    }
+
+    /**
+     * @return Usuario[]
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param Usuario[] $usuario
+     * @return Evento
+     */
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
         return $this;
     }
 
