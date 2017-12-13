@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class JuergasController extends Controller
 {
     /**
-     * @Route(path="/eventos", name="mostar_juergas")
+     * @Route(path="/eventos", name="mostrar_juergas")
      */
     public function indexAction(Request $request)
     {
