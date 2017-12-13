@@ -46,6 +46,31 @@ class Evento
     private $usuario;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="nombre")
+     *
+     * @var categoria
+     */
+    private $categoria;
+
+    /**
+     * @return categoria
+     */
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * @param categoria $categoria
+     * @return Evento
+     */
+    public function setCategoria($categoria)
+    {
+        $this->categoria = $categoria;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getId()

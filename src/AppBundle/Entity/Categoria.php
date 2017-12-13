@@ -27,6 +27,31 @@ class Categoria
     private $descripcion;
 
     /**
+     * @ORM\OneToMany(targetEntity="Evento", mappedBy="nombre")
+     *
+     * @var evento[]
+     */
+    private $eventos;
+
+    /**
+     * @return evento[]
+     */
+    public function getEventos()
+    {
+        return $this->eventos;
+    }
+
+    /**
+     * @param evento[] $eventos
+     * @return Categoria
+     */
+    public function setEventos($eventos)
+    {
+        $this->eventos = $eventos;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getId()
