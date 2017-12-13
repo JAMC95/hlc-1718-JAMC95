@@ -14,7 +14,7 @@
         <tbody>
         {% for juerga in juergas %}
             <tr>
-                <td>{{ juerga.evento}}</td>
+                <td><a href="{{ path('mostrar_asistentes', {'evento': juerga.evento}) }}">{{ juerga.evento}}</a></td>
                 <td>{{ juerga.asistentes }}</td>
                 <td>{{ juerga.fechaInicio }}</td>
                 <td>{{ juerga.fechaFin }}</td>
