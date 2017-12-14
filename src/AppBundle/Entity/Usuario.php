@@ -33,7 +33,7 @@ class Usuario
     private $admin;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Evento", mappedBy="nombre")
+     * @ORM\ManyToMany(targetEntity="Evento", mappedBy="usuario")
      * @var Evento[]
      */
     private $eventos;

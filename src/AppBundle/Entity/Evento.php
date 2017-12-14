@@ -39,14 +39,14 @@ class Evento
     private $precioPersona;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Usuario", inversedBy="nombreUsuario")
+     * @ORM\ManyToMany(targetEntity="Usuario", inversedBy="eventos")
      * @ORM\JoinColumn(nullable=false)
      * @var Usuario[]
      */
     private $usuario;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="nombre")
+     * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="eventos")
      * @ORM\JoinColumn(nullable=false)
      * @var Categoria
      */
