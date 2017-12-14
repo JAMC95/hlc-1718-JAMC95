@@ -51,7 +51,7 @@ class Usuario
      * @param Evento[] $eventos
      * @return Usuario
      */
-    public function setEventos($eventos)
+    public function setEventos(Evento $eventos)
     {
         $this->eventos = $eventos;
         return $this;

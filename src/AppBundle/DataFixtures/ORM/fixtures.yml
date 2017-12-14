@@ -5,6 +5,7 @@ AppBundle\Entity\Evento:
       fechaFin : <dateTimeThisYear()>
       precioPersona: <numberBetween(0, 10)>
       categoria: '@categoria*'
+      usuario: ['@usuario*', '@usuario*']
 
 AppBundle\Entity\Categoria:
     categoria_{1..20}:
@@ -15,6 +16,7 @@ AppBundle\Entity\Usuario:
     usuario_{1..20}:
       nombreUsuario: <es_ES:firstName()>
       password : <word()>
+      admin: <boolean(25)>
 
 
 
