@@ -44,7 +44,7 @@ class Evento
      * @ORM\JoinColumn(nullable=false)
      * @var Usuario[]
      */
-    private $usuario;
+    private $usuarios;
 
     /**
      * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="eventos")
@@ -164,18 +164,18 @@ class Evento
     /**
      * @return Usuario[]
      */
-    public function getUsuario()
+    public function getUsuarios()
     {
-        return $this->usuario;
+        return $this->usuarios;
     }
 
     /**
      * @param Usuario[] $usuario
      * @return Evento
      */
-    public function setUsuario($usuario)
+    public function setUsuarios($usuarios)
     {
-        $this->usuario = $usuario;
+        $this->usuarios = $usuarios;
         return $this;
     }
 
