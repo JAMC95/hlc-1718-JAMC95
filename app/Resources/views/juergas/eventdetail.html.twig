@@ -11,7 +11,7 @@
         <tbody>
             <tr>
                 {% for asistente in asistentes %}
-                <td>{{ asistente |first}}</td>
+                <td>{{ asistente.nombreUsuario }}</td>
             </tr>
         {% else %}
             <tr>
