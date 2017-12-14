@@ -39,20 +39,23 @@ class JuergasController extends Controller
      * @Route(path="/evento/{evento}", name="mostrar_asistentes")
      * */
 
-    public function JuergaAction(Request $request, $evento)
+    public function JuergaAction(Request $request, Evento $evento)
     {
-        $eventosAsistente[0] = ['evento' => 'Fiesta aprobados HLC', 'asistente'=> ['Juan','Maria', 'Diego'] ];
-        $eventosAsistente[1] = ['evento' => 'Fiesta estudiosos', 'asistente'=> ['Paco','Maria', 'Diego'] ];
-        $eventosAsistente[1] = ['evento' => 'Viaje a Despeñaperros', 'asistente'=> [] ];
-        $eventoAsistente = null;
-        foreach ($eventosAsistente as $item) {
-            if($item['evento'] == $evento) {
-                $eventoAsistente = $item;
-            }
-        }
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+        $juerga = $em->getRepository('AppBundle:Evento')->findOneBy(['id'=>  $evento->getId()]);
+        $asistentes= $em->createQueryBuilder()
+            ->select( 'u.nombreUsuario')
+            ->from('AppBundle:Evento', 'e')
+            ->join('e.usuario', 'u')
+            ->where('e.id = :evento')
+            ->setParameter('evento', $evento)
+            ->getQuery()
+            ->getResult();
 
         return $this->render('juergas/eventdetail.html.twig', [
-            'juerga' => $eventoAsistente
+            'juerga' => $juerga,
+            'asistentes' => $asistentes
         ]);
     }
 }

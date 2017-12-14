@@ -4,14 +4,14 @@
     <table class="table table-bordered table-hover table-striped">
         <thead>
         <tr>
-           <h1>{{ juerga.evento }}</h1>
+           <h1>{{ juerga.nombre }}</h1>
             <h2>Listado de asistentes</h2>
         </tr>
         </thead>
         <tbody>
             <tr>
-                {% for asistentes in juerga.asistente %}
-                <td>{{ asistentes }}</td>
+                {% for asistente in asistentes %}
+                <td>{{ asistente |first}}</td>
             </tr>
         {% else %}
             <tr>
