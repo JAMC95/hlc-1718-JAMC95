@@ -19,7 +19,7 @@ class JuergasController extends Controller
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
         $juergas = $em->getRepository('AppBundle:Evento')->findAll();
-        $juergas =  $this->getDoctrine()->getRepository('AppBundle:Evento')->findEventos($juergas);
+        $juergas =  $this->getDoctrine()->getRepository('AppBundle:Usuario')->findEventosconNAsistentes($juergas);
 
         return $this->render('juergas/index.html.twig', [
             'juergas' => $juergas
@@ -36,7 +36,7 @@ class JuergasController extends Controller
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
         $juerga = $em->getRepository('AppBundle:Evento')->findOneBy(['id'=>  $evento->getId()]);
-        $asistentes = $this->getDoctrine()->getRepository('AppBundle:Evento')->findAsistentesNombre($evento);
+        $asistentes = $this->getDoctrine()->getRepository('AppBundle:Usuario')->findAsistentesNombre($evento);
 
         return $this->render('juergas/eventdetail.html.twig', [
             'juerga' => $juerga,
