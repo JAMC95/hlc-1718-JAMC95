@@ -3,9 +3,21 @@ AppBundle\Entity\Evento:
       nombre: <es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>
       fechaInicio : <dateTimeThisYear()>
       fechaFin : <dateTimeThisYear()>
-      precioPersona: <buildingNumber()>
-      usuario: <es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>
-      categoria: <es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>
+      precioPersona: <numberBetween(0, 10)>
+      categoria: '@categoria*'
+
+AppBundle\Entity\Categoria:
+    categoria_{1..20}:
+      nombre: <word()>
+      descripcion : <paragraph()>
+
+AppBundle\Entity\Usuario:
+    usuario_{1..20}:
+      nombreUsuario: <es_ES:firstName()>
+      password : <word()>
+
+
+
 
 
 

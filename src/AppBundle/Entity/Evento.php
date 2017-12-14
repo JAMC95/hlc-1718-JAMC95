@@ -48,12 +48,12 @@ class Evento
     /**
      * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="nombre")
      *
-     * @var categoria
+     * @var Categoria
      */
     private $categoria;
 
     /**
-     * @return categoria
+     * @return Categoria
      */
     public function getCategoria()
     {
@@ -61,7 +61,7 @@ class Evento
     }
 
     /**
-     * @param categoria $categoria
+     * @param Categoria $categoria
      * @return Evento
      */
     public function setCategoria($categoria)
