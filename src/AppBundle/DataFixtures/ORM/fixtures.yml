@@ -5,7 +5,7 @@ AppBundle\Entity\Evento:
       fechaFin : <dateTimeThisYear()>
       precioPersona: <numberBetween(0, 10)>
       categoria: '@categoria*'
-      usuario: ['@usuario*']
+      usuario: '<numberBetween(0, 5)>x @usuario*'
 
 AppBundle\Entity\Categoria:
     categoria_{1..20}:
