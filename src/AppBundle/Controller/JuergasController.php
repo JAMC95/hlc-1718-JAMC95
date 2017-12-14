@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
+use Doctrine\ORM\EntityManager;
+use AppBundle\Entity\Evento;
 class JuergasController extends Controller
 {
     /**
@@ -13,9 +14,21 @@ class JuergasController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $juergas[0] = ['evento' => 'Fiesta aprobados HLC', 'asistentes'=> 3, 'fechaInicio' => '17/07/2017', 'fechaFin' => '17/07/2017', 'precioPersona' => 17.50 ];
-        $juergas[1] = ['evento' => 'Fiesta estudiosos', 'asistentes'=> 3, 'fechaInicio' => '19/07/2017', 'fechaFin' => '19/07/2017', 'precioPersona' => 16.00 ];
-        $juergas[2] = ['evento' => 'Viaje a Despeñaperros', 'asistentes'=> 0, 'fechaInicio' => '1/08/2017', 'fechaFin' => '2/07/2017', 'precioPersona' => 50.00 ];
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+        $juergas = $em->getRepository('AppBundle:Evento')->findAll();
+        $asistentes= $em->createQueryBuilder()
+            ->select( 'SIZE(e.usuario)')
+            ->from('AppBundle:Evento', 'e')
+            ->getQuery()
+            ->getResult();
+
+        foreach ($juergas as $item) {
+            foreach ($asistentes as $item2) {
+                 $item->nAsistentes = $item2[1];
+            }
+        }
+
         return $this->render('juergas/index.html.twig', [
             'juergas' => $juergas
         ]);

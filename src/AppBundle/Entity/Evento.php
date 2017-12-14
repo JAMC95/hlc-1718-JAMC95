@@ -40,14 +40,14 @@ class Evento
 
     /**
      * @ORM\ManyToMany(targetEntity="Usuario", inversedBy="nombreUsuario")
-     *
+     * @ORM\JoinColumn(nullable=false)
      * @var Usuario[]
      */
     private $usuario;
 
     /**
      * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="nombre")
-     *
+     * @ORM\JoinColumn(nullable=false)
      * @var Categoria
      */
     private $categoria;

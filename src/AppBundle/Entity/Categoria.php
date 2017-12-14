@@ -28,7 +28,6 @@ class Categoria
 
     /**
      * @ORM\OneToMany(targetEntity="Evento", mappedBy="nombre")
-     *
      * @var evento[]
      */
     private $eventos;

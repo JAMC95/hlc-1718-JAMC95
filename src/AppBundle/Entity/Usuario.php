@@ -34,7 +34,6 @@ class Usuario
 
     /**
      * @ORM\ManyToMany(targetEntity="Evento", mappedBy="nombre")
-     *
      * @var Evento[]
      */
     private $eventos;

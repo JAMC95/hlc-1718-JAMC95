@@ -1,11 +1,11 @@
 AppBundle\Entity\Evento:
     evento_{1..20}:
-      nombre: <es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>
+      nombre: <word()>
       fechaInicio : <dateTimeThisYear()>
       fechaFin : <dateTimeThisYear()>
       precioPersona: <numberBetween(0, 10)>
       categoria: '@categoria*'
-      usuario: ['@usuario*', '@usuario*']
+      usuario: ['@usuario*']
 
 AppBundle\Entity\Categoria:
     categoria_{1..20}:
