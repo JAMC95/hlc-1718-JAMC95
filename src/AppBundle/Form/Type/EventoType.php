@@ -13,6 +13,7 @@ use AppBundle\Entity\Categoria;
 use AppBundle\Entity\Usuario;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 
@@ -23,11 +24,19 @@ class EventoType extends AbstractType
         $builder->add('nombre', null, [
             'label' => 'Nombre'
         ])
-            ->add('fechaInicio', null, [
-                'label' => 'Fecha de Inicio'
+            ->add('fechaInicio',  DateTimeType::class, [
+                'label' => 'Fecha de Inicio',
+                'placeholder' => array(
+                    'year' => 'Año', 'month' => 'Mes', 'day' => 'Día',
+                    'hour' => 'Hora', 'minute' => 'Minuto'
+                )
             ])
-            ->add('fechaFin', null, [
-                'label' => 'Fecha de finalización'
+            ->add('fechaFin', DateTimeType::class, [
+                'label' => 'Fecha de finalización',
+                'placeholder' => array(
+                    'year' => 'Año', 'month' => 'Mes', 'day' => 'Día',
+                    'hour' => 'Hora', 'minute' => 'Minuto'
+                )
             ])
             ->add('precioPersona', null, [
                 'label' => 'Precio por persona'
