@@ -11,7 +11,9 @@
     <div class="form-group">
         <div class="col-sm-2"></div>
         <div class="col-sm-10">
+            <a href="{{ path('mostrar_juergas') }}" class="btn btn-info"><i class="fa fa-backward"></i> Volver</a>
             <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Guardar cambios</button>
+            {% if evento.id %}<a href="{{ path('evento_eliminar', {'id': evento.id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar</a>{% endif %}
 
         </div>
     </div>

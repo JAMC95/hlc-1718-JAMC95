@@ -30,7 +30,7 @@ class JuergasController extends Controller
 
     /**
      * @Route(path="/evento/{evento}", name="mostrar_asistentes")
-     * */
+     */
 
     public function JuergaAction(Request $request, Evento $evento)
     {
@@ -48,16 +48,19 @@ class JuergasController extends Controller
 
     /**
      * @Route(path="/eventonew/", name="nuevo_evento")
+     * @Route(path="/eventoedit/{evento}", name="editar_evento")
      * */
 
-    public function JuergaNew(Request $request)
+    public function JuergaNew(Request $request, Evento $evento = null)
     {
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
+        if(null === $evento) {
+            $evento = new Evento();
+            $em->persist($evento);
+        }
 
-        $evento = new Evento();
-        $em->persist($evento);
         $form = $this->createForm(EventoType::class, $evento);
 
         $form->handleRequest($request);
@@ -71,7 +74,32 @@ class JuergasController extends Controller
             }
         }
         return $this->render('juergas/form.html.twig', [
-            'formulario' => $form->createView()
+
+            'formulario' => $form->createView(),
+            'evento' => $evento
         ]);
     }
+
+    /**
+     * @Route("/eventoeliminar/{id}", name="evento_eliminar")
+     */
+    public function eliminarAction(Request $request, Evento $evento)
+    {
+        $em = $this->getDoctrine()->getManager();
+        if ($request->isMethod('POST')) {
+            try {
+
+                $em->remove($evento);
+                $em->flush();
+                return $this->redirectToRoute('mostrar_juergas');
+            }
+            catch (\Exception $e) {
+                $this->addFlash('error', 'No se ha podido eliminar la juerga');
+            }
+        }
+        return $this->render('juergas/eliminar.html.twig', [
+            'juerga' => $evento
+        ]);
+    }
+
 }
