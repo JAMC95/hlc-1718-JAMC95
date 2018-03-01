@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\Type\EventoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,6 +42,36 @@ class JuergasController extends Controller
         return $this->render('juergas/eventdetail.html.twig', [
             'juerga' => $juerga,
             'asistentes' => $asistentes
+        ]);
+    }
+
+
+    /**
+     * @Route(path="/eventonew/", name="nuevo_evento")
+     * */
+
+    public function JuergaNew(Request $request)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+
+        $evento = new Evento();
+        $em->persist($evento);
+        $form = $this->createForm(EventoType::class, $evento);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $em->flush();
+                return $this->redirectToRoute('mostrar_juergas');
+            }
+            catch (\Exception $e) {
+                $this->addFlash('error', 'No se han podido guardar los cambios');
+            }
+        }
+        return $this->render('juergas/form.html.twig', [
+            'formulario' => $form->createView()
         ]);
     }
 }

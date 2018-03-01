@@ -130,7 +130,9 @@ class Usuario
     }
 
 
-
+    public function __toString() {
+        return (string) $this->nombreUsuario;
+    }
 
 
 
