@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -19,23 +20,41 @@ class Evento
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="date")
      * @var \DateTime
+     * @Assert\Range(
+     *      min = "now",
+     *      max = "first day of January next year UTC",
+     *      maxMessage="La fecha no puede ser anterior a la actual",
+     *      minMessage="La fecha no puede ser superior al 1 de enero del próximo año"
+     * )
      */
     private $fechaInicio;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\Range(
+     *      min = "now",
+     *      max = "first day of January next year UTC",
+     *      maxMessage="La fecha no puede ser anterior a la actual",
+     *      minMessage="La fecha no puede ser superior al 1 de enero del próximo año"
+     * )
      * @var \DateTime
      */
     private $fechaFin;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Ponga un valor decimal"
+     *     )
      */
     private $precioPersona;
 
