@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\EventoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManager;
@@ -49,6 +50,7 @@ class JuergasController extends Controller
     /**
      * @Route(path="/eventonew/", name="nuevo_evento")
      * @Route(path="/eventoedit/{evento}", name="editar_evento")
+     * @Security("is_granted('ROLE_USER')")
      * */
 
     public function JuergaNew(Request $request, Evento $evento = null)
@@ -82,6 +84,7 @@ class JuergasController extends Controller
 
     /**
      * @Route("/eventoeliminar/{id}", name="evento_eliminar")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function eliminarAction(Request $request, Evento $evento)
     {
