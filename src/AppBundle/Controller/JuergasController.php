@@ -50,7 +50,7 @@ class JuergasController extends Controller
     /**
      * @Route(path="/eventonew/", name="nuevo_evento")
      * @Route(path="/eventoedit/{evento}", name="editar_evento")
-     * @Security("is_granted('ROLE_USER')")
+     * @Security("is_granted('ROLE_JUERGUISTA')")
      * */
 
     public function JuergaNew(Request $request, Evento $evento = null)
