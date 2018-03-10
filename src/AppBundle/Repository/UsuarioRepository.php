@@ -49,4 +49,13 @@ class UsuarioRepository  extends EntityRepository
 
     }
 
+    public function findUsuarios() {
+        return $this->createQueryBuilder('u')
+            ->select('u')
+            ->getQuery()
+            ->getResult();
+
+
+    }
+
 }

@@ -22,7 +22,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     {% if app.user %}
-                        <p class="navbar-text">Conectado como {{ app.user }}</p>
+                        <p class="navbar-text">Conectado como <a style="color: #EFFBF5" href="{{ path('usuario_cambiar_clave') }}">{{ app.user }}</a></p>
                     {% endif %}
                     {% if app.user %}
                         <li><a href="{{ path('logout') }}"><i class="fa fa-sign-out"></i> Salir</a></li>
