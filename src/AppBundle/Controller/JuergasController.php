@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\EventoType;
+use AppBundle\Security\EventoVoter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -62,9 +63,14 @@ class JuergasController extends Controller
             $evento = new Evento();
             $evento->setAutor($this->get('security.token_storage')->getToken()->getUser());
             $em->persist($evento);
+            $form = $this->createForm(EventoType::class, $evento);
+        } else {
+            $form = $this->createForm(EventoType::class, $evento,[
+                'disabled' => !$this->isGranted(EventoVoter::MODIFICAR, $evento)
+            ]);
+
         }
 
-        $form = $this->createForm(EventoType::class, $evento);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

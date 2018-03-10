@@ -9,11 +9,11 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
-class EventoVoter
+class EventoVoter extends Voter
 {
-    const VER = 'IDEA_VER';
-    const MODIFICAR = 'IDEA_MODIFICAR';
-    const ELIMINAR = 'IDEA_ELIMINAR';
+    const VER = 'EVENTO_VER';
+    const MODIFICAR = 'EVENTO_MODIFICAR';
+    const ELIMINAR = 'EVENTO_ELIMINAR';
     private $decisionManager;
     public function __construct(AccessDecisionManagerInterface $decisionManager)
     {
