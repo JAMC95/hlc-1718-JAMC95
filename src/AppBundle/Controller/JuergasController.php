@@ -63,11 +63,12 @@ class JuergasController extends Controller
             $evento = new Evento();
             $evento->setAutor($this->get('security.token_storage')->getToken()->getUser());
             $em->persist($evento);
-            $form = $this->createForm(EventoType::class, $evento);
+            $form = $this->createForm(EventoType::class, $evento, ['admin' => $this->isGranted('ROLE_ADMIN')]);
         } else {
-            $form = $this->createForm(EventoType::class, $evento,[
-                'disabled' => !$this->isGranted(EventoVoter::MODIFICAR, $evento)
-            ]);
+            $form = $this->createForm(EventoType::class, $evento, [
+                'disabled' => !$this->isGranted(EventoVoter::MODIFICAR, $evento),
+           'admin' => $this->isGranted('ROLE_ADMIN')]);
+
 
         }
 

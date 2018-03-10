@@ -10,11 +10,14 @@ namespace AppBundle\Form\Type;
 
 
 use AppBundle\Entity\Categoria;
+use AppBundle\Entity\Evento;
 use AppBundle\Entity\Usuario;
+use AppBundle\Security\EventoVoter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
 class EventoType extends AbstractType
@@ -47,14 +50,27 @@ class EventoType extends AbstractType
                 'expanded' => true,
                 'multiple' => false,
                 'required' => true
-            ])
-            ->add('usuarios',  EntityType::class, [
-            'class' => Usuario::class,
-            'label' => 'Usuarios',
-            'expanded' => true,
-            'multiple' => true,
-            'required' => false
-        ]);
+            ]);
+        if($options['admin']) {
 
+            $builder->add('usuarios',  EntityType::class, [
+                'class' => Usuario::class,
+                'label' => 'Asistentes',
+                'expanded' => true,
+                'multiple' => true,
+                'required' => false,
+                'disabled' => !$options['admin']
+
+            ]);
+        }
+
+
+    }
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Evento::class,
+            'admin' => false
+        ]);
     }
 }
