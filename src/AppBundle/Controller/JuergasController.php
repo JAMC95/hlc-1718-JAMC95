@@ -4,6 +4,9 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\EventoType;
 use AppBundle\Security\EventoVoter;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -36,14 +39,17 @@ class JuergasController extends Controller
 
     public function JuergaAction(Request $request, Evento $evento)
     {
+        $usuario = $this->get('security.token_storage')->getToken()->getUser();
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
         $juerga = $em->getRepository('AppBundle:Evento')->findOneBy(['id'=>  $evento->getId()]);
         $asistentes = $this->getDoctrine()->getRepository('AppBundle:Usuario')->findAsistentesNombre($evento);
+        $estaAsistiendo = in_array($usuario, $asistentes[0]);
 
         return $this->render('juergas/eventdetail.html.twig', [
             'juerga' => $juerga,
-            'asistentes' => $asistentes
+            'asistentes' => $asistentes,
+            'estaAsistiendo' => $estaAsistiendo
         ]);
     }
 
@@ -111,6 +117,27 @@ class JuergasController extends Controller
         return $this->render('juergas/eliminar.html.twig', [
             'juerga' => $evento
         ]);
+    }
+
+    /**
+     * @Route("/eventoasistir/{evento}", name="evento_asistir")
+     */
+    public function asistirJuerga(Request $request, Evento $evento)
+    {
+        $usuario = $this->get('security.token_storage')->getToken()->getUser();
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+        $asistentes = $this->getDoctrine()->getRepository('AppBundle:Usuario')->findAsistentesNombre($evento, $usuario);
+
+        if (in_array($usuario, $asistentes[0])) {
+            $evento->removeUsuario($usuario);
+        } else {
+            $evento->addUsuario($usuario);
+        }
+
+            $em->flush();
+
+        return $this->redirect('/evento/'.$evento->getId());
     }
 
 }
