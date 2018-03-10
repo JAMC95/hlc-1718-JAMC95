@@ -13,9 +13,13 @@ AppBundle\Entity\Categoria:
       descripcion : <paragraph()>
 
 AppBundle\Entity\Usuario:
-    usuario_{1..20}:
-      nombreUsuario: <es_ES:firstName()>
-      password : <word()>
+  admin:
+      nombreUsuario: admin
+      password:  <codificaPassword('admin')>
+      admin: true
+  usuario_{1..20}:
+      nombreUsuario (unique): <es_ES:firstName()>
+      password :  <codificaPassword('usuario')>
       admin: <boolean(25)>
 
 
