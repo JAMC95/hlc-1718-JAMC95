@@ -25,4 +25,13 @@ class SecurityController extends Controller
             'error'         => $error,
         ));
     }
+
+    /**
+     * @Route("/salir", name="logout")
+     */
+    public function salirAction()
+    {
+        // no contiene nada porque Symfony interceptará la petición y la acción
+        // nunca se ejecutará
+    }
 }

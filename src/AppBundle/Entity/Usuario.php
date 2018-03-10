@@ -154,7 +154,7 @@ class Usuario  implements UserInterface
     public function getRoles()
     {
         // inicialmente todos los usuarios tienen el rol ROLE_USER
-        $roles = ['ROLE_USER'];
+        $roles = ['ROLE_JUERGUISTA'];
         // si es administrador, añadir el rol ROLE_ADMIN
         if ($this->isAdmin()) {
             $roles[] = 'ROLE_ADMIN';
