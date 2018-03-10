@@ -195,4 +195,47 @@ class Usuario  implements UserInterface
     }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->eventos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get admin.
+     *
+     * @return bool
+     */
+    public function getAdmin()
+    {
+        return $this->admin;
+    }
+
+    /**
+     * Add evento.
+     *
+     * @param \AppBundle\Entity\Evento $evento
+     *
+     * @return Usuario
+     */
+    public function addEvento(\AppBundle\Entity\Evento $evento)
+    {
+        $this->eventos[] = $evento;
+
+        return $this;
+    }
+
+    /**
+     * Remove evento.
+     *
+     * @param \AppBundle\Entity\Evento $evento
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeEvento(\AppBundle\Entity\Evento $evento)
+    {
+        return $this->eventos->removeElement($evento);
+    }
 }

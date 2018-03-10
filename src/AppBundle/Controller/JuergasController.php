@@ -60,6 +60,7 @@ class JuergasController extends Controller
 
         if(null === $evento) {
             $evento = new Evento();
+            $evento->setAutor($this->get('security.token_storage')->getToken()->getUser());
             $em->persist($evento);
         }
 

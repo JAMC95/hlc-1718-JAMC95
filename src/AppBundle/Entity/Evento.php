@@ -66,6 +66,13 @@ class Evento
     private $usuarios;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumn(nullable=true)
+     * @var Usuario
+     */
+    private $autor;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="eventos")
      * @ORM\JoinColumn(nullable=false)
      * @var Categoria
@@ -199,4 +206,61 @@ class Evento
     }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->usuarios = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add usuario.
+     *
+     * @param \AppBundle\Entity\Usuario $usuario
+     *
+     * @return Evento
+     */
+    public function addUsuario(\AppBundle\Entity\Usuario $usuario)
+    {
+        $this->usuarios[] = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Remove usuario.
+     *
+     * @param \AppBundle\Entity\Usuario $usuario
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeUsuario(\AppBundle\Entity\Usuario $usuario)
+    {
+        return $this->usuarios->removeElement($usuario);
+    }
+
+    /**
+     * Set autor.
+     *
+     * @param \AppBundle\Entity\Usuario|null $autor
+     *
+     * @return Evento
+     */
+    public function setAutor(\AppBundle\Entity\Usuario $autor = null)
+    {
+        $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * Get autor.
+     *
+     * @return \AppBundle\Entity\Usuario|null
+     */
+    public function getAutor()
+    {
+        return $this->autor;
+    }
 }

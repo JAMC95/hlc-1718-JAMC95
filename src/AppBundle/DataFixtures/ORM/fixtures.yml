@@ -6,6 +6,7 @@ AppBundle\Entity\Evento:
       precioPersona: <numberBetween(0, 10)>
       categoria: '@categoria*'
       usuarios: '<numberBetween(0, 5)>x @usuario*'
+      autor: '@usuario*'
 
 AppBundle\Entity\Categoria:
     categoria_{1..20}:

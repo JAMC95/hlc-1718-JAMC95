@@ -109,4 +109,37 @@ class Categoria
         return (string)$this->nombre;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->eventos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add evento.
+     *
+     * @param \AppBundle\Entity\Evento $evento
+     *
+     * @return Categoria
+     */
+    public function addEvento(\AppBundle\Entity\Evento $evento)
+    {
+        $this->eventos[] = $evento;
+
+        return $this;
+    }
+
+    /**
+     * Remove evento.
+     *
+     * @param \AppBundle\Entity\Evento $evento
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeEvento(\AppBundle\Entity\Evento $evento)
+    {
+        return $this->eventos->removeElement($evento);
+    }
 }
